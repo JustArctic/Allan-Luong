@@ -57,7 +57,7 @@ def draw():
         else:
             display_word += "_ "
     text = WORD_FONT.render(display_word, 1, BLACK)
-    win.blit(text, (300, 200))
+    win.blit(text, (350, 200))
 
     # draw buttons
     for letter in letters:
