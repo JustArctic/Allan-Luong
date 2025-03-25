@@ -4,7 +4,7 @@ import random
 
 # setup display
 pygame.init()
-WIDTH, HEIGHT = 800, 500
+WIDTH, HEIGHT = 1480, 720
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hangman Game!")
 
@@ -46,7 +46,7 @@ def draw():
     win.fill(WHITE)
 
     # draw title
-    text = TITLE_FONT.render("GUESS OR DIE!", 1, BLACK)
+    text = TITLE_FONT.render("DON'T LET BRO DIE!", 1, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, 18))
 
     # draw word
@@ -103,7 +103,15 @@ def main():
                             guessed.append(ltr)
                             if ltr not in word:
                                 hangman_status += 1
-        
+
+            # Key press handling
+            if event.type == pygame.KEYDOWN:
+                key = pygame.key.name(event.key).upper()  # Get the key and convert to uppercase
+                if key.isalpha() and key not in guessed:  # Ensure it's a valid letter and not already guessed
+                    guessed.append(key)
+                    if key not in word:
+                        hangman_status += 1
+
         draw()
 
         won = True
@@ -121,7 +129,6 @@ def main():
             break
     
 while True:
-    
     main()
     pygame.display.quit()
 pygame.quit()
