@@ -41,14 +41,17 @@ guessed = []
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 
+# statistics
+wins = 0
+losses = 0
 
 def draw():
     win.fill(WHITE)
-
+    
     # draw title
     text = TITLE_FONT.render("DON'T LET BRO DIE!", 1, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, 18))
-
+    
     # draw word
     display_word = ""
     for letter in word:
@@ -58,7 +61,7 @@ def draw():
             display_word += "_ "
     text = WORD_FONT.render(display_word, 1, BLACK)
     win.blit(text, (350, 200))
-
+    
     # draw buttons
     for letter in letters:
         x, y, ltr, visible = letter
@@ -66,10 +69,9 @@ def draw():
             pygame.draw.circle(win, BLACK, (x, y), RADIUS, 3)
             text = LETTER_FONT.render(ltr, 1, BLACK)
             win.blit(text, (x - text.get_width()/2, y - text.get_height()/2))
-
+    
     win.blit(images[hangman_status], (150, 100))
     pygame.display.update()
-
 
 def display_message(message):
     pygame.time.delay(1000)
@@ -79,16 +81,39 @@ def display_message(message):
     pygame.display.update()
     pygame.time.delay(3000)
 
+def show_menu():
+    global wins, losses
+    win.fill(WHITE)
+    
+    title_text = TITLE_FONT.render("HANGMAN GAME", 1, BLACK)
+    win.blit(title_text, (WIDTH/2 - title_text.get_width()/2, 100))
+    
+    stats_text = WORD_FONT.render(f"Wins: {wins}  Losses: {losses}", 1, BLACK)
+    win.blit(stats_text, (WIDTH/2 - stats_text.get_width()/2, 200))
+    
+    play_text = WORD_FONT.render("Press ENTER to Play", 1, BLACK)
+    quit_text = WORD_FONT.render("Press ESC to Quit", 1, BLACK)
+    
+    win.blit(play_text, (WIDTH/2 - play_text.get_width()/2, 300))
+    win.blit(quit_text, (WIDTH/2 - quit_text.get_width()/2, 400))
+    
+    pygame.display.update()
+
 def main():
-    global hangman_status
+    global hangman_status, word, guessed, wins, losses
+    
+    # Reset the game state
+    hangman_status = 0
+    word = random.choice(words)
+    guessed = []
 
     FPS = 60
     clock = pygame.time.Clock()
     run = True
-
+    
     while run:
         clock.tick(FPS)
-
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -103,17 +128,20 @@ def main():
                             guessed.append(ltr)
                             if ltr not in word:
                                 hangman_status += 1
-
+            
             # Key press handling
             if event.type == pygame.KEYDOWN:
                 key = pygame.key.name(event.key).upper()  # Get the key and convert to uppercase
                 if key.isalpha() and key not in guessed:  # Ensure it's a valid letter and not already guessed
                     guessed.append(key)
+                    for letter in letters:
+                        if letter[2] == key:
+                            letter[3] = False  # Make the letter button disappear when guessed
                     if key not in word:
                         hangman_status += 1
-
+        
         draw()
-
+        
         won = True
         for letter in word:
             if letter not in guessed:
@@ -122,13 +150,27 @@ def main():
         
         if won:
             display_message("You WON!")
+            wins += 1
             break
-
+        
         if hangman_status == 6:
             display_message("You LOST!")
+            losses += 1
             break
-    
-while True:
-    main()
-    pygame.display.quit()
-pygame.quit()
+
+def game_loop():
+    running = True
+    while running:
+        show_menu()  # Show menu screen first
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:  # Start the game
+                    main()
+                if event.key == pygame.K_ESCAPE:  # Quit the game
+                    running = False
+    pygame.quit()
+
+game_loop()
+
