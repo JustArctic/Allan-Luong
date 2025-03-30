@@ -101,11 +101,15 @@ def show_menu():
 
 def main():
     global hangman_status, word, guessed, wins, losses
-    
-    # Reset the game state
+
+    # Reset game variables
     hangman_status = 0
     word = random.choice(words)
     guessed = []
+
+    # Reset letters visibility
+    for letter in letters:
+        letter[3] = True  # Make all letters visible again
 
     FPS = 60
     clock = pygame.time.Clock()
@@ -173,4 +177,5 @@ def game_loop():
     pygame.quit()
 
 game_loop()
+
 
