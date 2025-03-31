@@ -38,7 +38,7 @@ image = pygame.image.load(image_path)
 
 # game variables
 hangman_status = 0
-words = ["IPAD", "REPLIT", "PYTHON", "PYGAME", "AUDIBLE", "FIRE", "WORDLE", "PAYTOWIN", "TAXEVASION", "ITSATRAP""APPLE", "BRIDGE", "CANDLE", "DRAGON", "ECHO", "FEATHER", "GALAXY", "HORIZON", "IVORY", "JUPITER", "KITE", "LABYRINTH", "MEADOW", "NEBULA", "ORBIT", "PRISM", "QUARTZ", "RAVEN", "SAPPHIRE", "TWILIGHT", "UMBRELLA", "VOYAGER", "WONDER", "XENON", "YONDER", "ZENITH","WINNER"]
+words = ["REPLIT", "PYGAME", "AUDIBLE", "WORDLE", "APPLE", "BRIDGE", "CANDLE", "DRAGON", "FEATHER", "GALAXY", "HORIZON", "JUPITER", "MEADOW", "NEBULA", "ORBIT", "PRISM", "QUARTZ", "RAVEN", "WINNER", "BLOSSOM", "CANYON", "DAZZLE", "EMBER", "FROST", "GLIMMER", "HARMONY", "INKLING", "KINDLE", "LANTERN", "MIRAGE", "NOVA", "OPAL", "PETAL", "QUILL", "SERENE", "TAPESTRY", "UNISON", "VIOLET", "XYLEM", "YEARN", "ABYSS", "BEACON", "CRIMSON", "DELTA", "EMBER", "FRAGMENT", "GLACIER", "HALO", "JUBILEE", "KERNEL", "LIMELIGHT", "MOSAIC", "NIMBUS", "OASIS", "PYRAMID", "SIGMA", "RIPPLE", "SYMPHONY", "THRESHOLD", "UNITY", "VORTEX", "WALTZ", "LOSER", "YAWN", "AEON", "EERIE", "OASIS", "ALIEN", "ELIXIR", "ENIGMA", "IDEAL", "IRONMAN", "OBLIVION", "SIGIL", "EUROPE", "UTOPIA", "IMAGINE", "OPTIMIZE", "EMERGE", "ILLUMINATE", "ELEVATE", "ESCAPE", "ORIGAMI"]
 word = random.choice(words)
 guessed = []
 
@@ -158,12 +158,12 @@ def main():
                 break
         
         if won:
-            display_message("You WON!")
+            display_message("You Saved Bro!")
             wins += 1
             break
         
         if hangman_status == 6:
-            display_message("You LOST!")
+            display_message(f"You Let Bro Die! The word was: {word}")  # Revealing the correct word
             losses += 1
             break
 
@@ -182,115 +182,3 @@ def game_loop():
     pygame.quit()
 
 game_loop()
-    
-win.blit(images[hangman_status], (150, 100))
-pygame.display.update()
-
-win.blit(images[hangman_status], (150, 100))
-pygame.display.update()
-
-def display_message(message):
-    pygame.time.delay(1000)
-    win.fill(WHITE)
-    text = WORD_FONT.render(message, 1, BLACK)
-    win.blit(text, (WIDTH/2 - text.get_width()/2, HEIGHT/2 - text.get_height()/2))
-    pygame.display.update()
-    pygame.time.delay(3000)
-
-def show_menu():
-    global wins, losses
-    win.fill(WHITE)
-    
-    title_text = TITLE_FONT.render("HANGMAN GAME", 1, BLACK)
-    win.blit(title_text, (WIDTH/2 - title_text.get_width()/2, 100))
-    
-    stats_text = WORD_FONT.render(f"Wins: {wins}  Losses: {losses}", 1, BLACK)
-    win.blit(stats_text, (WIDTH/2 - stats_text.get_width()/2, 200))
-    
-    play_text = WORD_FONT.render("Press ENTER to Play", 1, BLACK)
-    quit_text = WORD_FONT.render("Press ESC to Quit", 1, BLACK)
-    
-    win.blit(play_text, (WIDTH/2 - play_text.get_width()/2, 300))
-    win.blit(quit_text, (WIDTH/2 - quit_text.get_width()/2, 400))
-    
-    pygame.display.update()
-
-def main():
-    global hangman_status, word, guessed, wins, losses
-
-    # Reset game variables
-    hangman_status = 0
-    word = random.choice(words)
-    guessed = []
-
-    # Reset letters visibility
-    for letter in letters:
-        letter[3] = True  # Make all letters visible again
-
-    FPS = 60
-    clock = pygame.time.Clock()
-    run = True
-    
-    while run:
-        clock.tick(FPS)
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                m_x, m_y = pygame.mouse.get_pos()
-                for letter in letters:
-                    x, y, ltr, visible = letter
-                    if visible:
-                        dis = math.sqrt((x - m_x)**2 + (y - m_y)**2)
-                        if dis < RADIUS:
-                            letter[3] = False
-                            guessed.append(ltr)
-                            if ltr not in word:
-                                hangman_status += 1
-            
-            # Key press handling
-            if event.type == pygame.KEYDOWN:
-                key = pygame.key.name(event.key).upper()  # Get the key and convert to uppercase
-                if key.isalpha() and key not in guessed:  # Ensure it's a valid letter and not already guessed
-                    guessed.append(key)
-                    for letter in letters:
-                        if letter[2] == key:
-                            letter[3] = False  # Make the letter button disappear when guessed
-                    if key not in word:
-                        hangman_status += 1
-        
-        draw()
-        
-        won = True
-        for letter in word:
-            if letter not in guessed:
-                won = False
-                break
-        
-        if won:
-            display_message("You WON!")
-            wins += 1
-            break
-        
-        if hangman_status == 6:
-            display_message("You LOST!")
-            losses += 1
-            break
-
-def game_loop():
-    running = True
-    while running:
-        show_menu()  # Show menu screen first
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:  # Start the game
-                    main()
-                if event.key == pygame.K_ESCAPE:  # Quit the game
-                    running = False
-    pygame.quit()
-
-game_loop()
-
