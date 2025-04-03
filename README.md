@@ -11,7 +11,7 @@ Tracks wins and losses.
 How to Play:
 Press Enter to start.
 
-Guess letters by clicking or typing them. (Using Keyboardor Mouse)
+Guess letters by clicking or typing them. (Using Keyboard or Mouse)
 
 If you make 6 wrong guesses, you lose. Guess all letters correctly to win.
 
