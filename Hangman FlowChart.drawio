@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.3">
+  <diagram name="Page-1" id="2drveqVaCYFsPZIbBnoe">
+    <mxGraphModel dx="1008" dy="592" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-1" value="Start" style="ellipse;whiteSpace=wrap;fillColor=#D5E8D4" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-2" value="Initialize Game (Pygame, Variables, Images)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC" vertex="1" parent="1">
+          <mxGeometry x="250" y="150" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-3" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-1" target="XMw2iKxmzKlChdTO9MXU-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-4" value="Show Menu (Wins/Losses, Play/Exit)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC" vertex="1" parent="1">
+          <mxGeometry x="250" y="250" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-5" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-2" target="XMw2iKxmzKlChdTO9MXU-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-6" value="User Presses ENTER or ESC" style="diamond;whiteSpace=wrap;fillColor=#FFF2CC" vertex="1" parent="1">
+          <mxGeometry x="250" y="350" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-7" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-4" target="XMw2iKxmzKlChdTO9MXU-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-8" value="Start Game (Reset Variables, Choose Word)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC" vertex="1" parent="1">
+          <mxGeometry x="50" y="450" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-9" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-6" target="XMw2iKxmzKlChdTO9MXU-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-10" value="Quit Game" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC" vertex="1" parent="1">
+          <mxGeometry x="450" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-11" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-6" target="XMw2iKxmzKlChdTO9MXU-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-12" value="Game Loop (Handle Events, Draw UI)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC" vertex="1" parent="1">
+          <mxGeometry x="50" y="550" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-13" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-8" target="XMw2iKxmzKlChdTO9MXU-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-14" value="Check Win/Loss Condition" style="diamond;whiteSpace=wrap;fillColor=#FFF2CC" vertex="1" parent="1">
+          <mxGeometry x="50" y="650" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-15" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-12" target="XMw2iKxmzKlChdTO9MXU-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-16" value="Game Won: Display Message" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4" vertex="1" parent="1">
+          <mxGeometry x="20" y="750" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-17" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-14" target="XMw2iKxmzKlChdTO9MXU-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-18" value="Game Lost: Display Message" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC" vertex="1" parent="1">
+          <mxGeometry x="250" y="750" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-19" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-14" target="XMw2iKxmzKlChdTO9MXU-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-20" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-16" target="XMw2iKxmzKlChdTO9MXU-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XMw2iKxmzKlChdTO9MXU-21" edge="1" parent="1" source="XMw2iKxmzKlChdTO9MXU-18" target="XMw2iKxmzKlChdTO9MXU-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
